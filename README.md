@@ -6,11 +6,32 @@
 
 
 
+### 具体配置：
+
+```
+cd ~
+git clone https://github.com/bighu630/vimrc.git
+rm -rf .vim
+mv vimrc .vim
+```
+
+初次运行vim会报错，回车进入vim后使用：PlugInstall安装完插件即可
+
+此时YCM是还没配置好语言的
+
+```
+cd ~/.vim/plugged/YouCompleteMe
+./install.py --all  """可以指定语言安装
+```
+
+
+
 ### 要求：
 
 vim8.1及以上（目前只测试了8.1）
 
 vim支持python2／3（只需一个python）
+
 
 
 ### 不合要求的解决方法：
@@ -24,7 +45,8 @@ vim支持python2／3（只需一个python）
 debian系：sudo apt install vim-youcompleteme
 
 
-###其他问题：
+
+### 其他问题：
 
 法一:不使用*YCM*的代码补全方案
 
@@ -45,23 +67,6 @@ eg:
 
 
 
-### 具体配置：
-
-```
-cd ~
-git clone https://github.com/bighu630/vimrc.git
-rm -rf .vim
-mv vimrc .vim
-```
-
-初次运行vim会报错，回车进入vim后使用：PlugInstall安装完插件即可
-
-此时YCM是还没配置好语言的
-
-```
-cd ~/.vim/plugged/YouCompleteMe
-./install.py --all  """可以指定语言安装
-```
 
 
 
