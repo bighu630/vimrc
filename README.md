@@ -54,9 +54,12 @@ debian系：sudo apt install vim-youcompleteme
 
 可以使用其他的代码补全插件
 
-eg:                                                                                                   
+eg:  
+
   "Plug 'Valloric/YouCompleteMe'
+  
   Plug 'skywind3000/vim-auto-popmenu'
+  
   Plug 'skywind3000/vim-dict'
 
 ![img](https://github.com/bighu630/img/blob/main/vim02.png)
