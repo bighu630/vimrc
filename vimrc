@@ -25,11 +25,12 @@ set nobackup            " 设置不备份
 set noswapfile          " 禁止生成临时文件
 set autoread
 set autowrite
-set foldmethod=indent   " 开启代码折叠
+set foldmethod=indent " 开启代码折叠
+set foldlevelstart=99
 set nofoldenable
 set mouse+=a
-set shiftwidth=4      
-set softtabstop=4     
+set shiftwidth=8
+set softtabstop=8
 
 set langmenu=zh_CN.UTF-8
 set helplang=cn
@@ -41,20 +42,19 @@ set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 "快捷键配置
 map S :w<CR>
 map Q :q<CR>
-map R :source $MYVIMRC<CR>
-map J 5j
-map K 5k
-noremap = nzz
-noremap - Nzz
+map <leader>R :source $MYVIMRC<CR>
 noremap <leader><CR> :nohlsearch<CR>
-noremap ff :NERDTreeToggle<CR>
+"noremap ff :NERDTreeToggle<CR>
 nnoremap <C-s-tab> :PreviousBuffer<cr>
 nnoremap <C-tab> :NextBuffer<cr>
 nnoremap <leader>d :CloseCurrentBuffer<cr>
-nnoremap <leader>D :BufOnly<crt>
+nnoremap <leader>D :BufOnly<cr>
+nnoremap <Tab> za
 
 "函数列表
 nmap <F2> :TagbarToggle<CR>
+nmap <C-Left> :vertical res -3<CR>
+nmap <C-Right> :vertical res +3<CR>
 
 "窗口大小
 noremap <C-H> <C-w>5<
@@ -66,16 +66,12 @@ noremap zo zO
 "拼写检查
 map <leader>ss :set spell!<CR>
 noremap <C-x> ea<C-x>s
-inoremap <C-x> <Esc>ea<C-x>s
+"inoremap <C-x> <Esc>ea<C-x>s
 
 "保存管理员权限文件
 noremap <leader>S :w! sudo tee %<CR>
 
-map <leader><leader> <Esc>/<++><CR>:nohlsearch<CR>df>i
-
-"""""""""""
-"主题
-let g:SnazzyTransparent = 1
+"map <leader><leader> <Esc>/<++><CR>:nohlsearch<CR>df>i
 
 
 
@@ -96,6 +92,9 @@ Plug 'chxuan/vim-buffer'
 Plug 'chxuan/vimplus-startify'
 "代码补全
 " Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
+Plug 'voldikss/vim-floaterm'
 "vim资源管理器
 Plug 'scrooloose/nerdtree'
 "资源管理器美化
@@ -115,24 +114,38 @@ Plug 'kien/rainbow_parentheses.vim'
 "代码差错
 Plug 'scrooloose/syntastic'
 "vim主题
-Plug 'connorholyday/vim-snazzy'
-Plug 'morhetz/gruvbox'
-Plug 'mhartington/oceanic-next'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'yaocccc/vim-hlchunk'
 "python调试
 Plug 'sillybun/setbreakpoints_python'
+"翻译
+Plug 'voldikss/vim-translator'
 "洁净模式
 Plug 'junegunn/goyo.vim'
-"在侧边显示代码中的函数
+" 自动切换根目录
+Plug 'dbakker/vim-projectroot'
+" 在侧边显示代码中的函数
 Plug 'preservim/tagbar'
 "匹配括号
 Plug 'jiangmiao/auto-pairs'
 
 Plug 'scrooloose/nerdcommenter'
+
+Plug 'rhysd/accelerated-jk'
+" tmux 插件
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'roxma/vim-tmux-clipboard'
 set shortmess+=c
 
 call plug#end()
 
-color snazzy
+" color snazzy
+let g:lightline = {'colorscheme': 'catppuccin_mocha'}
+"""""""""""
+colorscheme catppuccin_macchiato
+set background=dark
+set termguicolors
+hi Normal guibg=NONE ctermbg=NONE
 
 
 """"""""""""""""""""""""""""""""""""
@@ -144,10 +157,14 @@ nnoremap <leader>p "+p
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 分屏窗口移动
-nnoremap <leader>j <c-w>j
-nnoremap <leader>k <c-w>k
-nnoremap <leader>h <c-w>h
-nnoremap <leader>l <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "自动执行函数F5
 map <F5> :call CompileRunGcc()<CR>
@@ -209,7 +226,23 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"代码差错
+
+function! ConflictsHighlight() abort
+    syn region conflictStart start=/^<<<<<<< .*$/ end=/^\ze\(=======$\||||||||\)/
+    syn region conflictMiddle start=/^||||||| .*$/ end=/^\ze=======$/
+    syn region conflictEnd start=/^\(=======$\||||||| |\)/ end=/^>>>>>>> .*$/
+
+    highlight conflictStart ctermbg=red ctermfg=black
+    highlight conflictMiddle ctermbg=blue ctermfg=black
+    highlight conflictEnd ctermbg=green cterm=bold ctermfg=black
+endfunction
+
+augroup MyColors
+    autocmd!
+    autocmd BufEnter * call ConflictsHighlight()
+augroup END
+
+"代码查错
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='✹'
 let g:syntastic_check_on_open=1
@@ -219,7 +252,7 @@ let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes,速度比pylint快
 let g:syntastic_javascript_checkers = ['jsl', 'jshint']
 let g:syntastic_html_checkers=['tidy', 'jshint']
 " 修改高亮的背景色, 适应主题
-highlight SyntasticErrorSign guifg=white guibg=black
+"highlight SyntasticErrorSign guifg=white guibg=black
 
 " to see error location list
 let g:syntastic_always_populate_loc_list = 0
@@ -239,16 +272,15 @@ nnoremap <Leader>- :lprevious<cr>
 
 " airline
 "let g:airline_theme="hybridline"
+let g:airline_theme = 'catppuccin_mocha'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_section_b='%{strftime("%H:%M:%S")}'
-"let g:airline_left_sep = ''
-"let g:airline_left_alt_sep = ''
-"let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = ''
-
-
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 
 
 " nerdtree
@@ -262,9 +294,9 @@ let g:NERDTreeDirArrowCollapsible='▼'
 
 
 " vim-buffer
-nnoremap <silent> <c-p> :PreviousBuffer<cr>
-nnoremap <silent> <c-n> :NextBuffer<cr>
-nnoremap <silent> <leader>d :CloseBuffer<cr>
+nnoremap <silent> <s-e> :PreviousBuffer<cr>
+nnoremap <silent> <s-r> :NextBuffer<cr>
+nnoremap <silent> <s-x> :CloseBuffer<cr>
 nnoremap <silent> <leader>D :BufOnly<cr>
 
 " 自动格式化
@@ -277,7 +309,10 @@ let g:autoformat_remove_trailing_spaces = 0
 autocmd FileType python nnoremap <F10> :call ToggleBreakPoint()<Cr>
 
 vnoremap <silent> gc V{:call nerdcommenter#Comment('x', 'toggle')<CR>
+nnoremap <silent> gc V{:call nerdcommenter#Comment('x', 'toggle')<CR>
 
+" 翻译
+nmap <silent> <s-l> <Plug>Translatew
 
 "设置不同的光标
 "Mode Settings
@@ -286,9 +321,9 @@ let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 
+" coc config
+" source $HOME/.vim/coc.vim
 
-" May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
-" utf-8 byte sequence
 set encoding=utf-8
 " Some servers have issues with backup files, see #649
 set nobackup
@@ -332,14 +367,14 @@ endif
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> - <Plug>(coc-diagnostic-prev)
+nmap <silent> = <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gh <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call ShowDocumentation()<CR>
@@ -448,3 +483,45 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+nnoremap <silent><nowait> <c-\> :<C-u>FloatermToggle<cr>
+
+" coc-explorer
+nnoremap ff :CocCommand explorer<CR>
+
+function! s:explorer_cur_dir()
+  let node_info = CocAction('runCommand', 'explorer.getNodeInfo', 0)
+  return fnamemodify(node_info['fullpath'], ':h')
+endfunction
+
+function! s:exec_cur_dir(cmd)
+  let dir = s:explorer_cur_dir()
+  execute 'cd ' . dir
+  execute a:cmd
+endfunction
+
+function! s:init_explorer()
+  set winblend=10
+
+  " Integration with other plugins
+
+  " CocList
+  nmap <buffer> <Leader>fg <Cmd>call <SID>exec_cur_dir('CocList -I grep')<CR>
+  nmap <buffer> <Leader>fG <Cmd>call <SID>exec_cur_dir('CocList -I grep -regex')<CR>
+  nmap <buffer> <C-p> <Cmd>call <SID>exec_cur_dir('CocList files')<CR>
+
+  " vim-floaterm
+  nmap <buffer> <Leader>ft <Cmd>call <SID>exec_cur_dir('FloatermNew --wintype=floating')<CR>
+endfunction
+
+function! s:enter_explorer()
+  if &filetype == 'coc-explorer'
+    " statusline
+    setl statusline=coc-explorer
+  endif
+endfunction
+
+"augroup CocExplorerCustom
+  "autocmd!
+  "autocmd BufEnter * call <SID>enter_explorer()
+  "autocmd FileType coc-explorer call <SID>init_explorer()
+"augroup END
