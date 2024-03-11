@@ -194,8 +194,8 @@ function! s:enter_explorer()
   endif
 endfunction
 
-augroup CocExplorerCustom
-  autocmd!
-  autocmd BufEnter * call <SID>enter_explorer()
-  autocmd FileType coc-explorer call <SID>init_explorer()
-augroup END
+"augroup CocExplorerCustom
+  "autocmd!
+  "autocmd BufEnter * call <SID>enter_explorer()
+  "autocmd FileType coc-explorer call <SID>init_explorer()
+"augroup END
