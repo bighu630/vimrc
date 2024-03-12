@@ -28,10 +28,22 @@
     "typeParameter": "\uf728",
     "default": " "
   },
-  // 保存的时候自动格式化
-
   "coc.preferences.formatOnSave": true,
-  //"coc.preferences.formatOnSaveFiletypes": ["php", "javascript", "html", "go"],
-  // 对齐 json中不能写注释
-  "explorer.icon.enableNerdfont": true
+  "explorer.icon.enableNerdfont": true,
+  "explorer.root.strategies": [
+    "keep",
+    "workspace",
+    "cwd",
+    "sourceBuffer",
+    "reveal"
+  ],
+  "explorer.root.customRules": {
+    "vcs": {
+      "patterns": [".git", ".hg", ".projections.json"]
+    },
+    "vcs-r": {
+      "patterns": [".git", ".hg", ".projections.json"],
+      "bottomUp": true
+    }
+  }
 }

@@ -20,27 +20,17 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
 Plug 'voldikss/vim-floaterm'
 "vim资源管理器
 Plug 'scrooloose/nerdtree'
-"资源管理器美化
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-"资源管理器插件
-Plug 'Xuyuanp/nerdtree-git-plugin'
 "允许vim使用图标字体
 Plug 'ryanoasis/vim-devicons'
-"自动格式化
-Plug 'Chiel92/vim-autoformat'
 "底部状态栏
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "缩进线
 Plug 'Yggdroot/indentLine'
 Plug 'kien/rainbow_parentheses.vim'
-"代码差错
-Plug 'scrooloose/syntastic'
 "vim主题
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'yaocccc/vim-hlchunk'
-"python调试
-Plug 'sillybun/setbreakpoints_python'
 "翻译
 Plug 'voldikss/vim-translator'
 "洁净模式
