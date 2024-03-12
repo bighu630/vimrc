@@ -34,8 +34,8 @@ nmap <C-Left> :vertical res -3<CR>
 nmap <C-Right> :vertical res +3<CR>
 
 "窗口大小
-noremap <C-H> <C-w>5<
-noremap <C-L> <C-w>5>
+noremap <C-<> <C-w>5<
+noremap <C->> <C-w>5>
 
 "函数折叠
 noremap zo zO
@@ -43,7 +43,7 @@ noremap zo zO
 "拼写检查
 map <leader>ss :set spell!<CR>
 noremap <C-x> ea<C-x>s
-"inoremap <C-x> <Esc>ea<C-x>s
+
 
 "保存管理员权限文件
 noremap <leader>S :w! sudo tee %<CR>
@@ -59,4 +59,7 @@ nnoremap <silent> <s-x> :CloseBuffer<cr>
 nnoremap <silent> <leader>D :BufOnly<cr>
 
 " 翻译
-nmap <silent> <s-l> <Plug>Translatew
+nmap <silent> L <Plug>Translate
+vmap <silent> L <Plug>TranslateV
+
+inoremap jk <ESC>
