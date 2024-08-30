@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/data/code/tg_youtubeMusic_bot'
 let g:netrw_dirhist_5='/data/dotfile/nvim/lua/lsp'
 let g:netrw_dirhist_4='/data/dotfile/nvim/lua'
 let g:netrw_dirhist_3='/data/dotfile/nvim/lua/core'
