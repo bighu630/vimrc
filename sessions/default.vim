@@ -27,13 +27,11 @@ vnoremap <nowait> <silent> <expr>  coc#float#has_scroll() ? coc#float#scroll(0
 nnoremap <nowait> <silent> <expr>  coc#float#has_scroll() ? coc#float#scroll(0) : "\"
 vnoremap <nowait> <silent> <expr>  coc#float#has_scroll() ? coc#float#scroll(1) : "\"
 nnoremap <nowait> <silent> <expr>  coc#float#has_scroll() ? coc#float#scroll(1) : "\"
-snoremap <silent>  c
 nnoremap  h
 nnoremap 	 za
 nnoremap <NL> j
 nnoremap  k
 nnoremap  l
-snoremap  "_c
 xmap <silent>  <Plug>(coc-range-select)
 nmap <silent>  <Plug>(coc-range-select)
 noremap  eas
@@ -90,14 +88,13 @@ nmap <silent> - <Plug>(coc-diagnostic-prev)
 nmap <silent> = <Plug>(coc-diagnostic-next)
 nnoremap <silent> E :PreviousBuffer
 nnoremap <silent> K :call ShowDocumentation()
-xmap <silent> L <Plug>TranslateV
+vmap <silent> L <Plug>TranslateV
 nmap <silent> L <Plug>Translate
-nmap Q :q
-xmap Q :q
-omap Q :q
+map Q :q
 nnoremap <silent> R :NextBuffer
 xmap S <Plug>VSurround
 nmap S :w
+smap S :w
 omap S :w
 nnoremap <silent> X :CloseBuffer
 omap ac <Plug>(coc-classobj-a)
@@ -116,7 +113,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gd <Plug>(coc-definition)
 nnoremap <silent> gc V{:call nerdcommenter#Comment('x', 'toggle')
-xnoremap <silent> gc V{:call nerdcommenter#Comment('x', 'toggle')
+vnoremap <silent> gc V{:call nerdcommenter#Comment('x', 'toggle')
 omap ic <Plug>(coc-classobj-i)
 xmap ic <Plug>(coc-classobj-i)
 omap if <Plug>(coc-funcobj-i)
@@ -128,68 +125,7 @@ nmap ySs <Plug>YSsurround
 nmap yss <Plug>Yssurround
 nmap yS <Plug>YSurround
 nmap ys <Plug>Ysurround
-nnoremap zo zO
-xnoremap zo zO
-onoremap zo zO
-snoremap <C-R> "_c
-snoremap <silent> <C-H> c
-snoremap <silent> <Del> c
-snoremap <silent> <BS> c
-xnoremap <silent> <Plug>(go-extract) :call go#extract#Extract(0)
-nnoremap <silent> <Plug>(go-fill-struct) :call go#fillstruct#FillStruct()
-nnoremap <silent> <Plug>(go-diagnostics) :call go#lint#Diagnostics(!g:go_jump_to_error)
-nnoremap <silent> <Plug>(go-if-err) :call go#iferr#Generate()
-nnoremap <silent> <Plug>(go-iferr) :call go#iferr#Generate()
-nnoremap <silent> <Plug>(go-alternate-split) :call go#alternate#Switch(0, "split")
-nnoremap <silent> <Plug>(go-alternate-vertical) :call go#alternate#Switch(0, "vsplit")
-nnoremap <silent> <Plug>(go-alternate-edit) :call go#alternate#Switch(0, "edit")
-nnoremap <silent> <Plug>(go-vet) :call go#lint#Vet(!g:go_jump_to_error)
-nnoremap <silent> <Plug>(go-lint) :call go#lint#Golint(!g:go_jump_to_error)
-nnoremap <silent> <Plug>(go-metalinter) :call go#lint#Gometa(!g:go_jump_to_error, 0)
-nnoremap <silent> <Plug>(go-doc-browser) :call go#doc#OpenBrowser()
-nnoremap <silent> <Plug>(go-doc-split) :call go#doc#Open("new", "split")
-nnoremap <silent> <Plug>(go-doc-vertical) :call go#doc#Open("vnew", "vsplit")
-nnoremap <silent> <Plug>(go-doc-tab) :call go#doc#Open("tabnew", "tabe")
-nnoremap <silent> <Plug>(go-doc) :call go#doc#Open("new", "split")
-nnoremap <silent> <Plug>(go-def-stack-clear) :call go#def#StackClear()
-nnoremap <silent> <Plug>(go-def-stack) :call go#def#Stack()
-nnoremap <silent> <Plug>(go-def-pop) :call go#def#StackPop()
-nnoremap <silent> <Plug>(go-def-type-tab) :call go#def#Jump("tab", 1)
-nnoremap <silent> <Plug>(go-def-type-split) :call go#def#Jump("split", 1)
-nnoremap <silent> <Plug>(go-def-type-vertical) :call go#def#Jump("vsplit", 1)
-nnoremap <silent> <Plug>(go-def-type) :call go#def#Jump('', 1)
-nnoremap <silent> <Plug>(go-def-tab) :call go#def#Jump("tab", 0)
-nnoremap <silent> <Plug>(go-def-split) :call go#def#Jump("split", 0)
-nnoremap <silent> <Plug>(go-def-vertical) :call go#def#Jump("vsplit", 0)
-nnoremap <silent> <Plug>(go-def) :call go#def#Jump('', 0)
-nnoremap <silent> <Plug>(go-decls-dir) :call go#decls#Decls(1, '')
-nnoremap <silent> <Plug>(go-decls) :call go#decls#Decls(0, '')
-nnoremap <silent> <Plug>(go-rename) :call go#rename#Rename(!g:go_jump_to_error)
-nnoremap <silent> <Plug>(go-sameids-toggle) :call go#sameids#ToggleSameIds()
-nnoremap <silent> <Plug>(go-sameids) :call go#sameids#SameIds(1)
-nnoremap <silent> <Plug>(go-referrers) :call go#referrers#Referrers(-1)
-nnoremap <silent> <Plug>(go-implements) :call go#implements#Implements(-1)
-nnoremap <silent> <Plug>(go-fmt) :call go#fmt#Format(0)
-nnoremap <silent> <Plug>(go-imports) :call go#fmt#Format(1)
-nnoremap <silent> <Plug>(go-import) :call go#import#SwitchImport(1, '', expand('<cword>'), '')
-nnoremap <silent> <Plug>(go-info) :call go#tool#Info(1)
-nnoremap <silent> <Plug>(go-deps) :call go#tool#Deps()
-nnoremap <silent> <Plug>(go-files) :call go#tool#Files()
-nnoremap <silent> <Plug>(go-coverage-browser) :call go#coverage#Browser(!g:go_jump_to_error)
-nnoremap <silent> <Plug>(go-coverage-toggle) :call go#coverage#BufferToggle(!g:go_jump_to_error)
-nnoremap <silent> <Plug>(go-coverage-clear) :call go#coverage#Clear()
-nnoremap <silent> <Plug>(go-coverage) :call go#coverage#Buffer(!g:go_jump_to_error)
-nnoremap <silent> <Plug>(go-test-file) :call go#test#File(!g:go_jump_to_error)
-nnoremap <silent> <Plug>(go-test-compile) :call go#test#Test(!g:go_jump_to_error, 1)
-nnoremap <silent> <Plug>(go-test-func) :call go#test#Func(!g:go_jump_to_error)
-nnoremap <silent> <Plug>(go-test) :call go#test#Test(!g:go_jump_to_error, 0)
-nnoremap <silent> <Plug>(go-install) :call go#cmd#Install(!g:go_jump_to_error)
-nnoremap <silent> <Plug>(go-generate) :call go#cmd#Generate(!g:go_jump_to_error)
-nnoremap <silent> <Plug>(go-build) :call go#cmd#Build(!g:go_jump_to_error)
-nnoremap <silent> <Plug>(go-run-tab) :call go#cmd#RunTerm(!g:go_jump_to_error, 'tabe', [])
-nnoremap <silent> <Plug>(go-run-split) :call go#cmd#RunTerm(!g:go_jump_to_error, 'split', [])
-nnoremap <silent> <Plug>(go-run-vertical) :call go#cmd#RunTerm(!g:go_jump_to_error, 'vsplit', [])
-nnoremap <silent> <Plug>(go-run) :call go#cmd#Run(!g:go_jump_to_error)
+noremap zo zO
 vnoremap <silent> <Plug>(coc-explorer-key-v-ai) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-ai'])
 vnoremap <silent> <Plug>(coc-explorer-key-v-ii) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-ii'])
 vnoremap <silent> <Plug>(coc-explorer-key-v-al) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-al'])
@@ -471,7 +407,6 @@ set background=dark
 set backspace=indent,eol,start
 set backupdir=~/.cache/vim/backup//
 set directory=~/.cache/vim/swap//
-set errorformat=%-G#\ %.%#,%-G%.%#panic:\ %m,%Ecan't\ load\ package:\ %m,%A%\\%%(%[%^:]%\\+:\ %\\)%\\?%f:%l:%c:\ %m,%A%\\%%(%[%^:]%\\+:\ %\\)%\\?%f:%l:\ %m,%C%*\\s%m,%-G%.%#
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 set foldlevelstart=99
 set helplang=cn
@@ -503,7 +438,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd /data/code/tg_youtubeMusic_bot
+cd /data/code/blog
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -512,11 +447,11 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +0 handler/quotation_handler.go
+badd +0 source/_posts/tho-dao-backdool.md
 argglobal
 %argdel
 $argadd .
-edit handler/quotation_handler.go
+edit source/_posts/tho-dao-backdool.md
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
@@ -536,9 +471,6 @@ inoremap <buffer> <silent> <M-(> =AutoPairsMoveCharacter('(')
 imap <buffer> <silent> <C-G>g <Plug>delimitMateJumpMany
 imap <buffer> <S-BS> <Plug>delimitMateS-BS
 inoremap <buffer> <silent> <C-H> =AutoPairsDelete()
-nnoremap <buffer> <silent> ] :call go#def#Jump("split", 0)
-nnoremap <buffer> <silent>  :call go#def#Jump("split", 0)
-nnoremap <buffer> <silent>  :GoDef
 inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
 inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
 inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
@@ -551,30 +483,12 @@ inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
 inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
 inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
 inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
-nnoremap <buffer> <silent> K :GoDoc
-xnoremap <buffer> <silent> [[ :call go#textobj#FunctionJump('v', 'prev')
-onoremap <buffer> <silent> [[ :call go#textobj#FunctionJump('o', 'prev')
-nnoremap <buffer> <silent> [[ :call go#textobj#FunctionJump('n', 'prev')
-xnoremap <buffer> <silent> ]] :call go#textobj#FunctionJump('v', 'next')
-onoremap <buffer> <silent> ]] :call go#textobj#FunctionJump('o', 'next')
-nnoremap <buffer> <silent> ]] :call go#textobj#FunctionJump('n', 'next')
-xnoremap <buffer> <silent> ac :call go#textobj#Comment('a')
-onoremap <buffer> <silent> ac :call go#textobj#Comment('a')
-xnoremap <buffer> <silent> af :call go#textobj#Function('a')
-onoremap <buffer> <silent> af :call go#textobj#Function('a')
-nnoremap <buffer> <silent> g<LeftMouse> <LeftMouse>:GoDef
-nnoremap <buffer> <silent> gD :GoDefType
-nnoremap <buffer> <silent> gd :GoDef
-xnoremap <buffer> <silent> ic :call go#textobj#Comment('i')
-onoremap <buffer> <silent> ic :call go#textobj#Comment('i')
-xnoremap <buffer> <silent> if :call go#textobj#Function('i')
-onoremap <buffer> <silent> if :call go#textobj#Function('i')
+xnoremap <buffer> <silent> [[ :exe "normal! gv"|call search('\%(^#\{1,5\}\s\+\S\|^\S.*\n^[=-]\+$\)', "bsW")
+nnoremap <buffer> <silent> [[ :call search('\%(^#\{1,5\}\s\+\S\|^\S.*\n^[=-]\+$\)', "bsW")
+xnoremap <buffer> <silent> ]] :exe "normal! gv"|call search('\%(^#\{1,5\}\s\+\S\|^\S.*\n^[=-]\+$\)', "sW")
+nnoremap <buffer> <silent> ]] :call search('\%(^#\{1,5\}\s\+\S\|^\S.*\n^[=-]\+$\)', "sW")
 noremap <buffer> <silent> <M-n> :call AutoPairsJump()
 noremap <buffer> <silent> <M-p> :call AutoPairsToggle()
-nnoremap <buffer> <silent> <C-W>] :call go#def#Jump("split", 0)
-nnoremap <buffer> <silent> <C-W><C-]> :call go#def#Jump("split", 0)
-nnoremap <buffer> <silent> <C-LeftMouse> <LeftMouse>:GoDef
-nnoremap <buffer> <silent> <C-]> :GoDef
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
 inoremap <buffer> <silent>  =AutoPairsDelete()
 inoremap <buffer> <silent>   =AutoPairsSpace()
@@ -593,7 +507,7 @@ let &cpo=s:cpo_save
 unlet s:cpo_save
 setlocal keymap=
 setlocal noarabic
-setlocal autoindent
+setlocal noautoindent
 setlocal backupcopy=
 setlocal balloonexpr=
 setlocal nobinary
@@ -608,8 +522,8 @@ setlocal cinoptions=
 setlocal cinscopedecls=public,protected,private
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=s1:/*,mb:*,ex:*/,://
-setlocal commentstring=//\ %s
+setlocal comments=fb:*,fb:-,fb:+,n:>
+setlocal commentstring=<!--\ %s\ -->
 setlocal complete=.,w,b,u,t,i
 setlocal completefunc=
 setlocal completeopt=
@@ -627,9 +541,9 @@ setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
-setlocal noexpandtab
-if &filetype != 'go'
-setlocal filetype=go
+setlocal expandtab
+if &filetype != 'markdown'
+setlocal filetype=markdown
 endif
 setlocal fillchars=
 setlocal fixendofline
@@ -646,16 +560,16 @@ setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
 setlocal formatexpr=
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatoptions=cq
+setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\|^\\s*[-*+]\\s\\+\\|^\\[^\\ze[^\\]]\\+\\]:\\&^.\\{4\\}
+setlocal formatoptions=tcqln
 setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=-1
 setlocal include=
 setlocal includeexpr=
-setlocal indentexpr=GoIndent(v:lnum)
-setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e,<:>,0=},0=)
+setlocal indentexpr=
+setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
@@ -666,15 +580,15 @@ setlocal lispwords=
 setlocal nolist
 setlocal listchars=
 setlocal makeencoding=
-setlocal makeprg=go\ build
-setlocal matchpairs=(:),{:},[:]
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:],<:>
 setlocal modeline
 setlocal modifiable
 setlocal nrformats=bin,octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=go#complete#Complete
+setlocal omnifunc=htmlcomplete#CompleteTags
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
@@ -686,7 +600,7 @@ setlocal norightleft
 setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal scrolloff=-1
-setlocal shiftwidth=8
+setlocal shiftwidth=4
 setlocal noshortname
 setlocal showbreak=
 setlocal sidescrolloff=-1
@@ -694,7 +608,7 @@ set signcolumn=yes
 setlocal signcolumn=yes
 setlocal nosmartindent
 setlocal nosmoothscroll
-setlocal softtabstop=8
+setlocal softtabstop=4
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
@@ -704,10 +618,10 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'go'
-setlocal syntax=go
+if &syntax != 'markdown'
+setlocal syntax=markdown
 endif
-setlocal tabstop=8
+setlocal tabstop=4
 setlocal tagcase=
 setlocal tagfunc=
 setlocal tags=
@@ -728,12 +642,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 169 - ((16 * winheight(0) + 25) / 51)
+let s:l = 12 - ((11 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 169
-normal! 036|
+keepjumps 12
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
