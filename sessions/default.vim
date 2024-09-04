@@ -447,11 +447,11 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +0 source/_posts/tho-dao-backdool.md
+badd +0 scaffolds/post.md
 argglobal
 %argdel
 $argadd .
-edit source/_posts/tho-dao-backdool.md
+edit scaffolds/post.md
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
@@ -642,12 +642,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 12 - ((11 * winheight(0) + 23) / 46)
+let s:l = 2 - ((1 * winheight(0) + 12) / 25)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 12
-normal! 0
+keepjumps 2
+normal! 08|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
