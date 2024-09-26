@@ -438,7 +438,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~
+cd /data/code/rust/cfworker/cf-worker-test1
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -447,11 +447,11 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +0 key.txt
+badd +0 wrangler.toml
 argglobal
 %argdel
-$argadd key.txt
-edit key.txt
+$argadd wrangler.toml
+edit wrangler.toml
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
@@ -518,15 +518,15 @@ setlocal cinoptions=
 setlocal cinscopedecls=public,protected,private
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=fb:-,fb:*,n:>
-setlocal commentstring=
+setlocal comments=:#
+setlocal commentstring=#\ %s
 setlocal complete=.,w,b,u,t,i
 setlocal completefunc=
 setlocal completeopt=
 setlocal concealcursor=inc
 setlocal conceallevel=2
 setlocal nocopyindent
-setlocal cryptmethod=blowfish2
+setlocal cryptmethod=
 setlocal nocursorbind
 setlocal nocursorcolumn
 set cursorline
@@ -538,8 +538,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal noexpandtab
-if &filetype != 'text'
-setlocal filetype=text
+if &filetype != 'toml'
+setlocal filetype=toml
 endif
 setlocal fillchars=
 setlocal fixendofline
@@ -614,8 +614,8 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'text'
-setlocal syntax=text
+if &syntax != 'toml'
+setlocal syntax=toml
 endif
 setlocal tabstop=8
 setlocal tagcase=
@@ -638,12 +638,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 6 - ((5 * winheight(0) + 12) / 25)
+let s:l = 3 - ((2 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 6
-normal! 038|
+keepjumps 3
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
