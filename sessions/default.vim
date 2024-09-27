@@ -438,7 +438,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd /data/code/rust/cfworker/cf-worker-test1
+cd /data/code/zlattice/data
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -447,11 +447,11 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +0 wrangler.toml
+badd +0 zltc_VzhGkh3SXyZDdCztrKY2Qm8nFSDEojrN6_2024-09-26.log
 argglobal
 %argdel
-$argadd wrangler.toml
-edit wrangler.toml
+$argadd zltc_VzhGkh3SXyZDdCztrKY2Qm8nFSDEojrN6_2024-09-26.log
+edit zltc_VzhGkh3SXyZDdCztrKY2Qm8nFSDEojrN6_2024-09-26.log
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
@@ -518,8 +518,8 @@ setlocal cinoptions=
 setlocal cinscopedecls=public,protected,private
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=:#
-setlocal commentstring=#\ %s
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=/*\ %s\ */
 setlocal complete=.,w,b,u,t,i
 setlocal completefunc=
 setlocal completeopt=
@@ -538,8 +538,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal noexpandtab
-if &filetype != 'toml'
-setlocal filetype=toml
+if &filetype != ''
+setlocal filetype=
 endif
 setlocal fillchars=
 setlocal fixendofline
@@ -614,8 +614,8 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'toml'
-setlocal syntax=toml
+if &syntax != ''
+setlocal syntax=
 endif
 setlocal tabstop=8
 setlocal tagcase=
@@ -638,11 +638,11 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 3 - ((2 * winheight(0) + 18) / 36)
+let s:l = 4 - ((3 * winheight(0) + 36) / 72)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 3
+keepjumps 4
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
@@ -656,7 +656,6 @@ if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
