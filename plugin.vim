@@ -15,7 +15,7 @@ Plug 'chxuan/vim-buffer'
 Plug 'chxuan/vimplus-startify'
 "代码补全
 " Plug 'Valloric/YouCompleteMe'
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
 Plug 'voldikss/vim-floaterm'
 "vim资源管理器
