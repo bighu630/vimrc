@@ -126,6 +126,13 @@ nmap yss <Plug>Yssurround
 nmap yS <Plug>YSurround
 nmap ys <Plug>Ysurround
 noremap zo zO
+nnoremap <silent> <Plug>TranslateX :TranslateX
+vnoremap <silent> <Plug>TranslateRV :TranslateR
+nnoremap <silent> <Plug>TranslateR viw:TranslateR
+vnoremap <silent> <Plug>TranslateWV :TranslateW
+nnoremap <silent> <Plug>TranslateW :TranslateW
+vnoremap <silent> <Plug>TranslateV :Translate
+nnoremap <silent> <Plug>Translate :Translate
 vnoremap <silent> <Plug>(coc-explorer-key-v-ai) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-ai'])
 vnoremap <silent> <Plug>(coc-explorer-key-v-ii) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-ii'])
 vnoremap <silent> <Plug>(coc-explorer-key-v-al) :call coc#rpc#request('doKeymap', ['coc-explorer-key-v-al'])
@@ -417,7 +424,7 @@ set langmenu=zh_CN.UTF-8
 set laststatus=2
 set mouse=a
 set ruler
-set runtimepath=~/.vim,~/.vim/plugged/vim-surround,~/.vim/plugged/ack.vim,~/.vim/plugged/delimitMate,~/.vim/plugged/change-colorscheme,~/.vim/plugged/vim-buffer,~/.vim/plugged/vimplus-startify,~/.vim/plugged/coc.nvim,~/.vim/plugged/vim-go,~/.vim/plugged/vim-floaterm,~/.vim/plugged/nerdtree,~/.vim/plugged/vim-devicons,~/.vim/plugged/vim-airline,~/.vim/plugged/vim-airline-themes,~/.vim/plugged/indentLine,~/.vim/plugged/rainbow_parentheses.vim,~/.vim/plugged/catppuccin,~/.vim/plugged/vim-hlchunk,~/.vim/plugged/vim-translator,~/.vim/plugged/goyo.vim,~/.vim/plugged/vim-projectroot,~/.vim/plugged/tagbar,~/.vim/plugged/auto-pairs,~/.vim/plugged/nerdcommenter,~/.vim/plugged/accelerated-jk,~/.vim/plugged/vim-tmux-focus-events,~/.vim/plugged/vim-tmux-clipboard,/usr/share/vim/vimfiles,/usr/share/vim/vim91,/usr/share/vim/vimfiles/after,~/.vim/plugged/indentLine/after,~/.vim/after,~/.config/coc/extensions/node_modules/coc-explorer
+set runtimepath=~/.vim,~/.vim/plugged/vim-surround,~/.vim/plugged/ack.vim,~/.vim/plugged/delimitMate,~/.vim/plugged/change-colorscheme,~/.vim/plugged/vim-buffer,~/.vim/plugged/vimplus-startify,~/.vim/plugged/coc.nvim,~/.vim/plugged/vim-go,~/.vim/plugged/vim-floaterm,~/.vim/plugged/nerdtree,~/.vim/plugged/vim-devicons,~/.vim/plugged/vim-airline,~/.vim/plugged/vim-airline-themes,~/.vim/plugged/indentLine,~/.vim/plugged/rainbow_parentheses.vim,~/.vim/plugged/catppuccin,~/.vim/plugged/vim-hlchunk,~/.vim/plugged/vim-translator,~/.vim/plugged/goyo.vim,~/.vim/plugged/vim-projectroot,~/.vim/plugged/tagbar,~/.vim/plugged/auto-pairs,~/.vim/plugged/nerdcommenter,~/.vim/plugged/accelerated-jk,~/.vim/plugged/vim-tmux-focus-events,~/.vim/plugged/vim-tmux-clipboard,/usr/share/vim/vimfiles,/usr/share/vim/vim91,/usr/share/vim/vimfiles/after,~/.config/coc/extensions/node_modules/coc-explorer,~/.vim/plugged/indentLine/after,~/.vim/after
 set scrolloff=5
 set shortmess=filnxtToOSc
 set showcmd
@@ -438,7 +445,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd /data/code/zlattice/data
+cd /tmp/vim-go564b354604feaed966a24b8095e2adb1241a1ec847efefa07dfcf2afee57f523
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -447,14 +454,14 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +0 zltc_VzhGkh3SXyZDdCztrKY2Qm8nFSDEojrN6_2024-09-26.log
 argglobal
 %argdel
-$argadd zltc_VzhGkh3SXyZDdCztrKY2Qm8nFSDEojrN6_2024-09-26.log
-edit zltc_VzhGkh3SXyZDdCztrKY2Qm8nFSDEojrN6_2024-09-26.log
+edit ~/dotfile/Startify
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
+imap <buffer> <silent> <C-G>g <Plug>delimitMateJumpMany
+imap <buffer> <S-BS> <Plug>delimitMateS-BS
 inoremap <buffer> <silent> <M-n> :call AutoPairsJump()a
 inoremap <buffer> <silent> <expr> <M-p> AutoPairsToggle()
 inoremap <buffer> <silent> <M-b> =AutoPairsBackInsert()
@@ -467,10 +474,22 @@ inoremap <buffer> <silent> <M-]> =AutoPairsMoveCharacter(']')
 inoremap <buffer> <silent> <M-[> =AutoPairsMoveCharacter('[')
 inoremap <buffer> <silent> <M-)> =AutoPairsMoveCharacter(')')
 inoremap <buffer> <silent> <M-(> =AutoPairsMoveCharacter('(')
-imap <buffer> <silent> <C-G>g <Plug>delimitMateJumpMany
-imap <buffer> <S-BS> <Plug>delimitMateS-BS
 inoremap <buffer> <silent> <C-H> =AutoPairsDelete()
 inoremap <buffer> <silent> <BS> =AutoPairsDelete()
+nnoremap <buffer> <nowait> <silent>  :call startify#open_buffers()
+nnoremap <buffer> <silent> 0 :call startify#open_buffers('15')
+nnoremap <buffer> <silent> 11 :call startify#open_buffers('29')
+nnoremap <buffer> <silent> 10 :call startify#open_buffers('28')
+nnoremap <buffer> <silent> 12 :call startify#open_buffers('30')
+nnoremap <buffer> <silent> 1 :call startify#open_buffers('16')
+nnoremap <buffer> <silent> 2 :call startify#open_buffers('17')
+nnoremap <buffer> <silent> 3 :call startify#open_buffers('18')
+nnoremap <buffer> <silent> 4 :call startify#open_buffers('19')
+nnoremap <buffer> <silent> 5 :call startify#open_buffers('20')
+nnoremap <buffer> <silent> 6 :call startify#open_buffers('21')
+nnoremap <buffer> <silent> 7 :call startify#open_buffers('22')
+nnoremap <buffer> <silent> 8 :call startify#open_buffers('23')
+nnoremap <buffer> <silent> 9 :call startify#open_buffers('24')
 inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
 inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
 inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
@@ -483,6 +502,15 @@ inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
 inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
 inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
 inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
+nnoremap <buffer> <expr> N 'j '[v:searchforward].'N'
+nnoremap <buffer> <nowait> <silent> e :call startify#open_buffers('11')
+nnoremap <buffer> <nowait> <silent> i :enew | startinsert
+nnoremap <buffer> j j
+nnoremap <buffer> k k
+nnoremap <buffer> <expr> n ' j'[v:searchforward].'n'
+nnoremap <buffer> <nowait> <silent> q :call startify#open_buffers('32')
+nnoremap <buffer> <nowait> <silent> <2-LeftMouse> :call startify#open_buffers()
+nnoremap <buffer> <nowait> <silent> <Insert> :enew | startinsert
 noremap <buffer> <silent> <M-n> :call AutoPairsJump()
 noremap <buffer> <silent> <M-p> :call AutoPairsToggle()
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
@@ -509,8 +537,8 @@ setlocal balloonexpr=
 setlocal nobinary
 setlocal nobreakindent
 setlocal breakindentopt=
-setlocal bufhidden=
-setlocal buflisted
+setlocal bufhidden=wipe
+setlocal nobuflisted
 setlocal buftype=
 setlocal nocindent
 setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
@@ -530,7 +558,7 @@ setlocal cryptmethod=
 setlocal nocursorbind
 setlocal nocursorcolumn
 set cursorline
-setlocal cursorline
+setlocal nocursorline
 setlocal cursorlineopt=both
 setlocal define=
 setlocal dictionary=
@@ -538,8 +566,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal noexpandtab
-if &filetype != ''
-setlocal filetype=
+if &filetype != 'startify'
+setlocal filetype=startify
 endif
 setlocal fillchars=
 setlocal fixendofline
@@ -579,10 +607,10 @@ setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
-setlocal modifiable
+setlocal nomodifiable
 setlocal nrformats=bin,octal,hex
 set number
-setlocal number
+setlocal nonumber
 setlocal numberwidth=4
 setlocal omnifunc=
 setlocal path=
@@ -591,7 +619,7 @@ setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
 set relativenumber
-setlocal relativenumber
+setlocal norelativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
 setlocal noscrollbind
@@ -614,8 +642,8 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != ''
-setlocal syntax=
+if &syntax != 'startify'
+setlocal syntax=startify
 endif
 setlocal tabstop=8
 setlocal tagcase=
@@ -638,12 +666,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 4 - ((3 * winheight(0) + 36) / 72)
+let s:l = 18 - ((17 * winheight(0) + 42) / 84)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 4
-normal! 0
+keepjumps 18
+normal! 05|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
@@ -656,6 +684,7 @@ if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
