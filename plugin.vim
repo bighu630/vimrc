@@ -17,6 +17,7 @@ Plug 'chxuan/vimplus-startify'
 " Plug 'Valloric/YouCompleteMe'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
+Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 Plug 'voldikss/vim-floaterm'
 "vim资源管理器
 Plug 'scrooloose/nerdtree'
