@@ -456,7 +456,7 @@ else
 endif
 argglobal
 %argdel
-edit ~/dotfile/Startify
+edit $DOTFILE/Startify
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
