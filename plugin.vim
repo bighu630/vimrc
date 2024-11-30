@@ -1,3 +1,18 @@
+let g:coc_global_extensions = [
+            \ 'coc-ultisnips',
+            \ 'coc-json',
+            \ 'coc-go',
+            \ 'coc-explorer',
+            \ 'coc-tsserver',
+            \ 'coc-html',
+            \ 'coc-css',
+            \ 'coc-yaml',
+            \ 'coc-highlight',
+            \ 'coc-angular'
+            \ ]
+
+
+
 """"""""""""""""""""""""""""""""""""""""
 "插件
 call plug#begin('~/.vim/plugged')
@@ -15,7 +30,7 @@ Plug 'chxuan/vim-buffer'
 Plug 'chxuan/vimplus-startify'
 "代码补全
 " Plug 'Valloric/YouCompleteMe'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release','do':{ -> coc#util#install() }}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
 Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 Plug 'voldikss/vim-floaterm'
