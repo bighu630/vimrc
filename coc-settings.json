@@ -1,5 +1,5 @@
 {
-	"suggest.noselect": true,
+	"suggest.noselect": false,
 	"suggest.completionItemKindLabels": {
 		"constructor": "\ufb25",
 		"keyword": "\uf1de",

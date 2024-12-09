@@ -32,7 +32,7 @@ Plug 'chxuan/vimplus-startify'
 " Plug 'Valloric/YouCompleteMe'
 Plug 'neoclide/coc.nvim', {'branch': 'release','do':{ -> coc#util#install() }}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
-Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
+"Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 Plug 'voldikss/vim-floaterm'
 "vim资源管理器
 Plug 'scrooloose/nerdtree'
@@ -65,5 +65,6 @@ Plug 'rhysd/accelerated-jk'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'roxma/vim-tmux-clipboard'
 set shortmess+=c
+
 
 call plug#end()
