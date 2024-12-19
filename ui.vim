@@ -4,6 +4,8 @@ let g:lightline = {'colorscheme': 'catppuccin_mocha'}
 colorscheme catppuccin_macchiato
 set background=dark
 set termguicolors
+set nowrap
+windo set nowrap
 hi Normal guibg=NONE ctermbg=NONE
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -59,3 +61,4 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
+
