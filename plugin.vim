@@ -46,6 +46,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'kien/rainbow_parentheses.vim'
 "vim主题
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'ghifarit53/tokyonight-vim'
 Plug 'yaocccc/vim-hlchunk'
 "翻译
 Plug 'voldikss/vim-translator'
@@ -64,6 +65,8 @@ Plug 'rhysd/accelerated-jk'
 " tmux 插件
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'roxma/vim-tmux-clipboard'
+
+Plug 'tribela/vim-transparent'
 set shortmess+=c
 
 

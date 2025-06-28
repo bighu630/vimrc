@@ -1,10 +1,17 @@
 " color snazzy
-let g:lightline = {'colorscheme': 'catppuccin_mocha'}
+"let g:lightline = {'colorscheme': 'catppuccin_mocha'}
 """""""""""
-colorscheme catppuccin_macchiato
+"colorscheme catppuccin_macchiato
 set background=dark
 set termguicolors
-set nowrap
+
+set termguicolors
+
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+
+colorscheme tokyonight
+
 windo set nowrap
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -61,4 +68,3 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-
