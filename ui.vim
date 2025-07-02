@@ -2,9 +2,7 @@
 "let g:lightline = {'colorscheme': 'catppuccin_mocha'}
 """""""""""
 "colorscheme catppuccin_macchiato
-set background=dark
-set termguicolors
-
+"set background=dark
 set termguicolors
 
 let g:tokyonight_style = 'night' " available: night, storm
@@ -13,7 +11,7 @@ let g:tokyonight_enable_italic = 1
 colorscheme tokyonight
 
 windo set nowrap
-hi Normal guibg=NONE ctermbg=NONE
+"hi Normal guibg=NONE ctermbg=NONE
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "括号配置
@@ -59,7 +57,7 @@ augroup END
 
 " airline
 "let g:airline_theme="hybridline"
-let g:airline_theme = 'catppuccin_mocha'
+let g:airline_theme = 'tokyonight'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
