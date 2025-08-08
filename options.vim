@@ -29,8 +29,10 @@ set foldmethod=indent " 开启代码折叠
 set foldlevelstart=99
 set nofoldenable
 set mouse+=a
-set shiftwidth=8
-set softtabstop=8
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set fillchars+=vert:│
 
 set langmenu=zh_CN.UTF-8
 set helplang=cn

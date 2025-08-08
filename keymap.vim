@@ -20,11 +20,9 @@ nmap k <Plug>(accelerated_jk_gk)
 map S :w<CR>
 map Q :q<CR>
 map <leader>R :source $MYVIMRC<CR>
-noremap <leader><CR> :nohlsearch<CR>
-"noremap ff :NERDTreeToggle<CR>
 nnoremap <C-s-tab> :PreviousBuffer<cr>
 nnoremap <C-tab> :NextBuffer<cr>
-nnoremap <leader>d :CloseCurrentBuffer<cr>
+nnoremap x :CloseBuffer<cr>
 nnoremap <leader>D :BufOnly<cr>
 nnoremap <Tab> za
 
