@@ -67,7 +67,7 @@ Plug 'rhysd/accelerated-jk'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'roxma/vim-tmux-clipboard'
 
-Plug 'tribela/vim-transparent'
+"Plug 'tribela/vim-transparent'
 set shortmess+=c
 
 
