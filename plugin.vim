@@ -32,6 +32,7 @@ Plug 'chxuan/vimplus-startify'
 " Plug 'Valloric/YouCompleteMe'
 Plug 'neoclide/coc.nvim', {'branch': 'release','do':{ -> coc#util#install() }}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
+Plug 'sheerun/vim-polyglot'
 "Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 Plug 'voldikss/vim-floaterm'
 "vim资源管理器
@@ -68,6 +69,7 @@ Plug 'roxma/vim-tmux-clipboard'
 
 Plug 'tribela/vim-transparent'
 set shortmess+=c
+
 
 
 call plug#end()
