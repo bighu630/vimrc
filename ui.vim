@@ -5,7 +5,7 @@
 "set background=dark
 set termguicolors
 
-let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_style = 'day' " available: night, storm
 let g:tokyonight_enable_italic = 1
 
 colorscheme catppuccin_mocha
