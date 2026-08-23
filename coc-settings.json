@@ -50,5 +50,11 @@
 			],
 			"bottomUp": true
 		}
+	},
+	"explorer.file.reveal.auto": false,
+	"explorer.file.reveal.whenOpen": false,
+	"explorer.openAction.for.directory": "expand",
+	"explorer.keyMappings.global": {
+		"<cr>": ["wait", "expandable?", ["expanded?", "collapse", "expand"], "open"]
 	}
 }
